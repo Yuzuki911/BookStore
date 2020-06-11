@@ -12,7 +12,14 @@ namespace BookStore.Controllers
         {
             return View();
         }
-
+        public ActionResult Header()
+        {
+            return PartialView();
+        }
+        public ActionResult Footer()
+        {
+            return PartialView();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
