@@ -24,10 +24,8 @@ namespace BookStore.Models
         [StringLength(255)]
         public string TITLE { get; set; }
 
-        [StringLength(255)]
         public string EXCERPT { get; set; }
 
-        [StringLength(255)]
         public string DESCRIPTION { get; set; }
 
         [Column(TypeName = "date")]
@@ -37,6 +35,9 @@ namespace BookStore.Models
 
         [StringLength(255)]
         public string BOOK_URL { get; set; }
+
+        [StringLength(255)]
+        public string PREVIEW { get; set; }
 
         public int? PUBLISHER_ID { get; set; }
 

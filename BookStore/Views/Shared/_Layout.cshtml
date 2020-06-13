@@ -37,21 +37,7 @@
     <!-- Main wrapper -->
     <div class="wrapper" id="wrapper">
         @{Html.RenderAction("Header", "Home");}
-        <!-- Start Search Popup -->
-        <div class="brown--color box-search-content search_active block-bg close__top">
-            <form id="search_mini_form" class="minisearch" action="#">
-                <div class="field__search">
-                    <input type="text" placeholder="Search entire store here...">
-                    <div class="action">
-                        <a href="~/Content/#"><i class="zmdi zmdi-search"></i></a>
-                    </div>
-                </div>
-            </form>
-            <div class="close__wrap">
-                <span>close</span>
-            </div>
-        </div>
-        <!-- End Search Popup -->
+
         <!-- Start Slider area -->
         <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
             <!-- Start Single Slide -->
@@ -64,7 +50,7 @@
                                     <h2>Buy <span>your </span></h2>
                                     <h2>favourite <span>Book </span></h2>
                                     <h2>from <span>Here </span></h2>
-                                    <a class="shopbtn" href="~/Content/#">shop now</a>
+                                    <a class="shopbtn" href="#">shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +68,7 @@
                                     <h2>Buy <span>your </span></h2>
                                     <h2>favourite <span>Book </span></h2>
                                     <h2>from <span>Here </span></h2>
-                                    <a class="shopbtn" href="~/Content/#">shop now</a>
+                                    <a class="shopbtn" href="#">shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="addtocart-btn">
-                                        <a href="~/Content/#">Add to cart</a>
+                                        <a href="#">Add to cart</a>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +170,8 @@
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/js/plugins.js"></script>
     <script src="~/Content/js/active.js"></script>
-
+    <script src="~/Content/js/google_maps.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfwXIv2vgXzFDZRzzRH2VpbvgSzhqCCuU&amp;callback=initMap" async defer></script>
 </body>
 
 <!-- Mirrored from demo.devitems.com/boighor-v3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Apr 2020 14:11:35 GMT -->

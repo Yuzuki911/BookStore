@@ -22,6 +22,8 @@ namespace BookStore.Models
         [StringLength(255)]
         public string NAME { get; set; }
 
+        public string CONTENT { get; set; }
+
         public int? POST_ID { get; set; }
 
         public virtual POST POST { get; set; }

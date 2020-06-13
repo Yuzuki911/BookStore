@@ -20,7 +20,6 @@ namespace BookStore.Models
         [StringLength(255)]
         public string TITLE { get; set; }
 
-        [StringLength(255)]
         public string EXCERPT { get; set; }
 
         public string CONTENT { get; set; }

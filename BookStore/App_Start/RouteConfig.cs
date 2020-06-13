@@ -17,6 +17,7 @@ namespace BookStore
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                 namespaces: new string[] { "BookStore.Areas.Admin.Controllers" }
             );
         }
     }
