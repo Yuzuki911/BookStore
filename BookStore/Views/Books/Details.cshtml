@@ -1,0 +1,180 @@
+﻿@using BookStore.Models
+@model BOOK
+<div class="ht__bradcaump__area bg-image--4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">Shop Single</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="index.html">Home</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">Shop Single</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bradcaump area -->
+<!-- Start main Content -->
+<div class="maincontent bg--white pt--80 pb--55">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-12">
+                <div class="wn__single__product">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="wn__fotorama__wrapper">
+                                <div class="fotorama wn__fotorama__action" data-nav="thumbs">
+                                    <a href="@ViewBag.Image.IMAGE1"><img src="~/Content/images/product/@ViewBag.Image.IMAGE1" alt=""></a>
+                                    <a href="@ViewBag.Image.IMAGE2"><img src="~/Content/images/product/@ViewBag.Image.IMAGE2" alt=""></a>
+                                    <a href="@ViewBag.Image.IMAGE3"><img src="~/Content/images/product/@ViewBag.Image.IMAGE3" alt=""></a>
+                                    <a href="@ViewBag.Image.IMAGE4"><img src="~/Content/images/product/@ViewBag.Image.IMAGE4" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="product__info__main">
+                                <h1>@Model.TITLE</h1>
+                                <div class="product-info-stock-sku d-flex">
+                                    <p>Availability:<span> In stock</span></p>
+                                    <p>SKU:<span> MH @Model.ID</span></p>
+                                </div>
+                                @*<div class="product-reviews-summary d-flex">
+                                        <ul class="rating-summary d-flex">
+                                            <li><i class="zmdi zmdi-star-outline"></i></li>
+                                            <li><i class="zmdi zmdi-star-outline"></i></li>
+                                            <li><i class="zmdi zmdi-star-outline"></i></li>
+                                            <li class="off"><i class="zmdi zmdi-star-outline"></i></li>
+                                            <li class="off"><i class="zmdi zmdi-star-outline"></i></li>
+                                        </ul>
+                                        <div class="reviews-actions d-flex">
+                                            <a href="#">(1 Review)</a>
+                                            <a href="#">Add Your Review</a>
+                                        </div>
+                                    </div>*@
+                                <div class="price-box">
+                                    <span>@Model.PRICE.GetValueOrDefault().ToString("N0") VNĐ</span>
+                                </div>
+                                @*<div class="product-color-label">
+                                        <span>Color</span>
+                                        <div class="color__attribute d-flex">
+                                            <div class="swatch-option color" style="background: #000000 no-repeat center; background-size: initial;"></div>
+                                            <div class="swatch-option color" style="background: #8f8f8f no-repeat center; background-size: initial;"></div>
+                                        </div>
+                                    </div>*@
+                                <div class="box-tocart d-flex">
+                                    <span>Qty</span>
+                                    <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
+                                    <div class="addtocart__actions">
+                                        <button class="tocart" type="submit" title="Add to Cart">Add to Cart</button>
+                                    </div>
+                                </div>
+                                <div class="product-addto-links clearfix">
+                                    <a class="wishlist" href="#"></a>
+                                </div>
+                                <div class="product__overview">
+                                    <p>@Model.EXCERPT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product__info__detailed">
+                    <div class="pro_details_nav nav justify-content-start" role="tablist">
+                        <a class="nav-item nav-link active" data-toggle="tab" href="#nav-details" role="tab">Details</a>
+                    </div>
+                    <div class="tab__container">
+                        <!-- Start Single Tab Content -->
+                        <div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
+                            <div class="description__attribute">
+                                <p>@Model.DESCRIPTION</p>
+                            </div>
+                        </div>
+                        <!-- End Single Tab Content -->
+                    </div>
+                </div>
+                <div class="wn__related__product pt--80 pb--50">
+                    <div class="section__title text-center">
+                        <h2 class="title__be--2">Related Products</h2>
+                    </div>
+                    <div class="row mt--60">
+                        <div class="productcategory__slide--2 arrows_style owl-carousel owl-theme">
+                            @foreach (var item in ViewBag.books)
+                            {
+                                <!-- Start Single Product -->
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="product">
+                                        <div class="product__thumb">
+                                            <a class="first__img" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/product/@item.BOOK_URL" alt="product image"></a>
+                                            <a class="second__img animation1" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/product/@item.PREVIEW" alt="product image"></a>
+                                            <ul class="prize position__right__bottom d-flex">
+                                                <li>@item.PRICE.ToString("N0") VNĐ</li>
+                                            </ul>
+                                            <div class="action">
+                                                <div class="actions_inner">
+                                                    <ul class="add_to_links">
+                                                        <li><a class="cart" href="cart.html"></a></li>
+                                                        <li><a class="wishlist" href="wishlist.html"></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product__content">
+                                            <h4><a href="@Url.Action("Details","Books",new { id = item.ID })"><strong>@item.TITLE</strong> </a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Start Single Product -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+                <div class="shop__sidebar">
+                    @{ Html.RenderAction("SideGenre", "Books"); }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End main Content -->
+<!-- Start Search Popup -->
+<div class="box-search-content search_active block-bg close__top">
+    <form id="search_mini_form--2" class="minisearch" action="#">
+        <div class="field__search">
+            <input type="text" placeholder="Search entire store here...">
+            <div class="action">
+                <a href="#"><i class="zmdi zmdi-search"></i></a>
+            </div>
+        </div>
+    </form>
+    <div class="close__wrap">
+        <span>close</span>
+    </div>
+</div>
+<!-- End Search Popup -->
+<!-- Start NEwsletter Area -->
+<section class="wn__newsletter__area bg-image--2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-5 col-md-12 col-12 ptb--150">
+                <div class="section__title text-center">
+                    <h2>Stay With Us</h2>
+                </div>
+                <div class="newsletter__block text-center">
+                    <p>Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive offers.</p>
+                    <form action="#">
+                        <div class="newsletter__box">
+                            <input type="email" placeholder="Enter your e-mail">
+                            <button>Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End NEwsletter Area -->

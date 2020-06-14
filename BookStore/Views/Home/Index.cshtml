@@ -1,5 +1,45 @@
 ﻿@using BookStore.Models
 @model List<BOOK>
+<!-- Start Slider area -->
+<div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
+    <!-- Start Single Slide -->
+    <div class="slide animation__style10 bg-image--1 fullscreen align__center--left">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="slider__content">
+                        <div class="contentbox">
+                            <h2>Buy <span>your </span></h2>
+                            <h2>favourite <span>Book </span></h2>
+                            <h2>from <span>Here </span></h2>
+                            <a class="shopbtn" href="@Url.Action("Index","Books")">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Single Slide -->
+    <!-- Start Single Slide -->
+    <div class="slide animation__style10 bg-image--7 fullscreen align__center--left">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="slider__content">
+                        <div class="contentbox">
+                            <h2>Buy <span>your </span></h2>
+                            <h2>favourite <span>Book </span></h2>
+                            <h2>from <span>Here </span></h2>
+                            <a class="shopbtn" href="@Url.Action("Index","Books")">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Single Slide -->
+</div>
+<!-- End Slider area -->
 <!-- Start BEst Seller Area -->
 <section class="wn__product__area brown--color pt--80  pb--30">
     <div class="container">
@@ -19,11 +59,11 @@
                 <div class="product product__style--3">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="product__thumb">
-                            <a class="first__img" href="#"><img src="~/Content/images/books/@item.BOOK_URL" alt="product image"></a>
-                            <a class="second__img animation1" href="#"><img src="~/Content/images/books/@item.PREVIEW" alt="product image"></a>
+                            <a class="first__img" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/books/@item.BOOK_URL" alt="product image"></a>
+                            <a class="second__img animation1" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/books/@item.PREVIEW" alt="product image"></a>
                         </div>
                         <div class="product__content content--center">
-                            <h4><a href="#" style="text-decoration:solid;">@item.TITLE</a></h4>
+                            <h4><a href="@Url.Action("Details","Books",new { id = item.ID })" style="text-decoration:solid;"><strong>@item.TITLE</strong></a></h4>
                             <ul class="prize d-flex">
                                 <li>@item.PRICE.ToString("N0") VNĐ</li>
                             </ul>
@@ -32,7 +72,7 @@
                                     <ul class="add_to_links">
                                         <li><a class="cart" href="~/Content/cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
                                         <li><a class="wishlist" href="~/Content/wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                        <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="~/Content/#productmodal"><i class="bi bi-search"></i></a></li>
+                                        <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,7 +116,7 @@
         </div>
         <div class="tab__container mt--60 target">
             <div class="row single__tab tab-pane fade show active" id="nav-all" role="tabpanel">
-                <div class="product__indicator--4 arrows_style owl-carousel owl-theme" id="content">
+                <div class="product__indicator--4 arrows_style owl-carousel owl-theme" >
                     @{
                         var group = Model.GroupBy(r => Model.IndexOf(r) / 2).ToList();
                         foreach (var pitem in group)
@@ -87,11 +127,11 @@
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                         <div class="product product__style--3">
                                             <div class="product__thumb">
-                                                <a class="first__img" href="#"><img src="~/Content/images/books/@item.BOOK_URL" alt="product image"></a>
-                                                <a class="second__img animation1" href="#"><img src="~/Content/images/books/@item.PREVIEW" alt="product image"></a>
+                                                <a class="first__img" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/books/@item.BOOK_URL" alt="product image"></a>
+                                                <a class="second__img animation1" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/books/@item.PREVIEW" alt="product image"></a>
                                             </div>
                                             <div class="product__content content--center content--center">
-                                                <h4><a href="~/Content/single-product.html">@item.TITLE</a></h4>
+                                                <h4><a href="@Url.Action("Details","Books",new { id = item.ID })"><strong>@item.TITLE</strong></a></h4>
                                                 <ul class="prize d-flex">
                                                     <li>@item.PRICE.GetValueOrDefault().ToString("N0") VNĐ</li>
                                                 </ul>
@@ -114,6 +154,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 <!-- Start BEst Seller Area -->
 <!-- Start Recent Post Area -->
@@ -205,6 +246,20 @@
     </div>
 </section>
 <!-- End NEwsletter Area -->
+<script>
+
+    //$(document).ready(function () {
+    //    $("#btnn a").click(function () {
+    //        $('html,body').animate({
+    //            scrollTop: $("#scrollhere").offset().top
+    //        }, 'slow');
+    //    });
+    //});
+    //$('html,body').animate({
+    //    scrollTop: $("#target").offset().top
+    //},
+    //    'slow');
+</script>
 @*<script src="~/Content/js/vendor/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function() {

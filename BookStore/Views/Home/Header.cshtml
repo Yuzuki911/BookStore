@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-6 col-6 col-lg-2">
                 <div class="logo">
-                    <a href="~/Content/index.html">
+                    <a href="@Url.Action("Index","Home")">
                         <img src="~/Content/images/logo/logo.png" alt="logo images">
                     </a>
                 </div>
@@ -16,8 +16,8 @@
                             <a href="@Url.Action("Index","Home")">Home</a>
                         </li>
                         <li class="drop">
-                            <a href="#">Books</a>
-                            <div class="megamenu mega03">
+                            <a href="@Url.Action("Index","Books")">Books</a>
+                           <!-- <div class="megamenu mega03">
                                 <ul class="item item03">
                                     <li class="title">Categories</li>
                                     <li><a href="~/Content/shop-grid.html">Biography </a></li>
@@ -27,6 +27,7 @@
                                     <li><a href="~/Content/shop-grid.html">History </a></li>
                                 </ul>
                                 <ul class="item item03">
+                                    <li class="title"></li>
                                     <li><a href="~/Content/shop-grid.html">Mystery</a></li>
                                     <li><a href="~/Content/shop-grid.html">Religion & Inspiration</a></li>
                                     <li><a href="~/Content/shop-grid.html">Romance</a></li>
@@ -34,13 +35,14 @@
                                     <li><a href="~/Content/shop-grid.html">Sleeveless</a></li>
                                 </ul>
                                 <ul class="item item03">
+                                    <li class="title"></li>
                                     <li><a href="~/Content/shop-grid.html">Science </a></li>
                                     <li><a href="~/Content/shop-grid.html">Fiction/Fantasy</a></li>
                                     <li><a href="~/Content/shop-grid.html">Self-Improvemen</a></li>
                                     <li><a href="~/Content/shop-grid.html">Home & Garden</a></li>
                                     <li><a href="~/Content/shop-grid.html">Humor Books</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </li>
                         <li class="drop">
                             <a href="~/Content/blog.html">Blog</a>
@@ -152,7 +154,6 @@
                                     <div class="switcher-options">
                                         <div class="switcher-currency-trigger">
                                             <div class="setting__menu">
-                                                <span><a href="~/Content/#">Compare Product</a></span>
                                                 <span><a href="~/Content/#">My Account</a></span>
                                                 <span><a href="~/Content/#">My Wishlist</a></span>
                                                 <span><a href="~/Content/#">Sign In</a></span>
@@ -176,8 +177,8 @@
                             <a href="@Url.Action("Index","Home")">Home</a>
                         </li>
                         <li>
-                            <a href="#">Books</a>
-                            <ul>
+                            <a href="@Url.Action("Index","Books")">Books</a>
+                            @*<ul>
                                 <li class="title">Categories</li>
                                 <li><a href="~/Content/shop-grid.html">Biography</a></li>
                                 <li><a href="~/Content/shop-list.html">Business</a></li>
@@ -185,7 +186,7 @@
                                 <li><a href="~/Content/shop-right-sidebar.html">Health & Fitness</a></li>
                                 <li><a href="~/Content/shop-no-sidebar.html">History</a></li>
                                 <li><a href="~/Content/single-product.html">Single Product</a></li>
-                            </ul>
+                            </ul>*@
                         </li>
                         <li>
                             <a href="#">Blog</a>

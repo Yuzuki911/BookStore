@@ -1,0 +1,33 @@
+﻿
+@using BookStore.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<BOOK>
+<div class="tab__container">
+    <div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <!-- Start Single Product -->
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="product">
+                        <div class="product__thumb">
+                            <a class="first__img" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/books/@item.BOOK_URL" alt="product image"></a>
+                            <a class="second__img animation1" href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/books/@item.PREVIEW" alt="product image"></a>
+                            <ul class="prize position__right__bottom d-flex">
+                                <li>@item.PRICE.GetValueOrDefault().ToString("N0") VNĐ</li>
+                            </ul>
+                        </div>
+                        <div class="product__content">
+                            <h4><a href="@Url.Action("Details","Books",new { id = item.ID })" style="text-align:center"><strong>@item.TITLE</strong> </a></h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Product -->
+            }
+
+        </div>
+        <ul class="wn__pagination">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </ul>
+    </div>
+</div>

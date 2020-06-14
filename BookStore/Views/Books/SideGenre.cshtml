@@ -1,0 +1,14 @@
+﻿@using BookStore.Models
+@model List<GENRE>
+<aside class="wedget__categories poroduct--cat">
+    <h3 class="wedget__title">Product Categories</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @*<a href="#">@item.NAME</a>*@
+                @Html.ActionLink(item.NAME, "Index", "Books", new { page = 1, genreid = item.ID },null)
+             </li>
+        }
+    </ul>
+</aside>
