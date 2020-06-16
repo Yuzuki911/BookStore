@@ -48,6 +48,10 @@ namespace BookStore.Controllers
         {
             return PartialView();
         }
+        public ActionResult CartTop()
+        {
+            return PartialView();
+        }
         public ActionResult About()
         {
             return View();

@@ -154,6 +154,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -165,6 +166,7 @@
     <Compile Include="Models\BOOK_AUTHOR.cs" />
     <Compile Include="Models\BOOK_GENRE.cs" />
     <Compile Include="Models\BOOK_IMAGE.cs" />
+    <Compile Include="Models\CART.cs" />
     <Compile Include="Models\COMMENT.cs" />
     <Compile Include="Models\CUSTOMER.cs" />
     <Compile Include="Models\GENRE.cs" />
@@ -541,6 +543,8 @@
     <Content Include="Views\Books\BookList.cshtml" />
     <Content Include="Views\Books\SideGenre.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Home\CartTop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

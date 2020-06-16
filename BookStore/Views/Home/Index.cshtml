@@ -1,5 +1,8 @@
 ﻿@using BookStore.Models
 @model List<BOOK>
+    @{ 
+        ViewBag.Item = new BOOK();
+    }
 <!-- Start Slider area -->
 <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
     <!-- Start Single Slide -->
@@ -70,9 +73,9 @@
                             <div class="action">
                                 <div class="actions_inner">
                                     <ul class="add_to_links">
-                                        <li><a class="cart" href="~/Content/cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+                                        <li><a class="cart" onclick="addtocart(@item.ID)"><i class="bi bi-shopping-bag4"></i></a></li>
                                         <li><a class="wishlist" href="~/Content/wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                        <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+                                        <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" data-id="@item.ID" href="#"><i class="bi bi-search"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,8 +89,7 @@
         <!-- End Single Tab Content -->
     </div>
 </section>
-<!-- Start BEst Seller Area -->
-<!-- Start Best Seller Area -->
+
 <section class="wn__bestseller__area bg--white pt--80  pb--30">
     <div class="container">
         <div class="row">
@@ -116,7 +118,7 @@
         </div>
         <div class="tab__container mt--60 target">
             <div class="row single__tab tab-pane fade show active" id="nav-all" role="tabpanel">
-                <div class="product__indicator--4 arrows_style owl-carousel owl-theme" >
+                <div class="product__indicator--4 arrows_style owl-carousel owl-theme">
                     @{
                         var group = Model.GroupBy(r => Model.IndexOf(r) / 2).ToList();
                         foreach (var pitem in group)
@@ -138,9 +140,9 @@
                                                 <div class="action">
                                                     <div class="actions_inner">
                                                         <ul class="add_to_links">
-                                                            <li><a class="cart" href="~/Content/cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                            <li><a class="cart" onclick="addtocart(@item.ID)"><i class="bi bi-shopping-bag4"></i></a></li>
                                                             <li><a class="wishlist" href="~/Content/wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                                            <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="~/Content/#productmodal"><i class="bi bi-search"></i></a></li>
+                                                            <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#"><i class="bi bi-search"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -156,7 +158,6 @@
         </div>
     </div>
 </section>
-<!-- Start BEst Seller Area -->
 <!-- Start Recent Post Area -->
 <section class="wn__recent__post bg--gray ptb--80">
     <div class="container">
@@ -245,46 +246,53 @@
         </div>
     </div>
 </section>
+<!-- QUICKVIEW PRODUCT -->
+<!-- END QUICKVIEW PRODUCT -->
+<!-- Modal -->
+<div class="modal fade" id="Cartaddmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal__container" role="document" style="width:fit-content;">
+        <div class="modal-content">
+            <div class="modal-header modal__header">
+                <h5 class="modal-title ">Thank You !</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                
+            </div>
+            <div class="modal-body">
+                <div class="modal-product text-center">
+                    <!-- Start product images -->
+                    <!-- end product images -->
+                    <p style="margin-right: 15px; padding-top: 8px;">ADDED TO CART</p>
+                    @*<div class="addtocart-btn">
+                            <a href="@Url.Action("Index","Cart")">EDIT CART</a>
+                        </div>*@
+                    <a href="/Cart/Index" class="btn btn-success">EDIT CART</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- End NEwsletter Area -->
 <script>
-
-    //$(document).ready(function () {
-    //    $("#btnn a").click(function () {
-    //        $('html,body').animate({
-    //            scrollTop: $("#scrollhere").offset().top
-    //        }, 'slow');
-    //    });
-    //});
-    //$('html,body').animate({
-    //    scrollTop: $("#target").offset().top
-    //},
-    //    'slow');
-</script>
-@*<script src="~/Content/js/vendor/jquery-3.2.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-
-            $('#btn').click(function () {
-                var Id = $(this).attr('id').substr(3, 1);
-                getBook(Id);
-            });
-
+    function addtocart(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/Cart/AddItem',
+            dataType: 'json',
+            data: { id: id, Soluong: 1 },
+            success: function () {
+                $('#Cartaddmodal').modal('show');
+            }
         });
-        function getBook(id) {
-            var params = {};
-            params.Id = id;
-            var content = $('#content');
-            $.ajax({
-                type: 'GET',
-                url: '/Home/BookListPartial',
-                data: params,
-                dataType: 'json',
-                success: function (data) {
-                    content.empty();
-                    var gr = data.g
-                    $.each()
-                }
+    }
+    @*$('#productmodal').on('show.bs.modal', function (e) {
 
-            });
+        //get data-id attribute of the clicked element
+        var bookId = $(e.relatedTarget).data('id');
+        @{ 
+            ViewBag.Item = Model.Find(x=>x.ID == bookId)
         }
-    </script>*@
+        //populate the textbox
+        $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+    });*@
+</script>
