@@ -28,6 +28,9 @@ namespace BookStore.Models
         [StringLength(255)]
         public string PASSWORD { get; set; }
 
+        [StringLength(255)]
+        public string AVATAR { get; set; }
+
         public bool? GENDER { get; set; }
 
         [StringLength(255)]

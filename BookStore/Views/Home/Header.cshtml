@@ -124,12 +124,23 @@
                                     </strong>
                                     <div class="switcher-options">
                                         <div class="switcher-currency-trigger">
-                                            <div class="setting__menu">
-                                                <span><a href="~/Content/#">My Account</a></span>
-                                                <span><a href="~/Content/#">My Wishlist</a></span>
-                                                <span><a href="~/Content/#">Sign In</a></span>
-                                                <span><a href="~/Content/#">Create An Account</a></span>
-                                            </div>
+                                            @if (Session["UserName"] != null)
+                                            {
+                                                <div class="setting__menu">
+                                                    <span><a href="@Url.Action("Index","Customer")">Hello @Session["UserName"]</a></span>
+                                                    <span><a href="">My Wishlist</a></span>
+                                                    <span><a href="@Url.Action("Logout","Customer")">Log out</a></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="setting__menu">
+                                                    <span><a href="@Url.Action("Login","Customer")">My Account</a></span>
+                                                    <span><a href="">My Wishlist</a></span>
+                                                    <span><a href="@Url.Action("Login","Customer")">Log in</a></span>
+                                                    <span><a href="@Url.Action("Register","Customer")">Register</a></span>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
