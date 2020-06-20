@@ -1,0 +1,86 @@
+﻿@using BookStore.Models
+@model CUSTOMER
+<!-- Start Bradcaump area -->
+<div class="ht__bradcaump__area bg-image--6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title" style="color:#333">Author</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" style="color:#333" href="@Url.Action("Index","Home")">Home</a>
+                        <span class="brd-separetor" style="color:#333">/</span>
+                        <span class="breadcrumb_item active">Author</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bradcaump area -->
+<!-- Start My Account Area -->
+<section class="my_account_area pt--80 pb--55 bg--white">
+    <div class="container">
+        <div class="row" style="justify-content: center;">
+            <div class="col-lg-6 col-12">
+                <div class="my__account__wrapper">
+                    <form >
+                        @Html.AntiForgeryToken()
+                        <div style=" text-align: center;margin-top: 100px;">
+                            @*<button >*@
+                                <img id="avatar" src="~/Content/images/about/@Model.AVATAR" style="width:300px;height:300px;" />
+                            @*</button>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="my__account__wrapper">
+                    <h3 class="account__title">User Profile</h3>
+                    <form action="#" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="account__form">
+                            <div class="input__box">
+                                <label>Full name:</label>
+                                @*<input type="text" name="NAME" value="@Session["FullName"]">*@
+                                <p>@Model.NAME </p>
+                            </div>
+                            <div class="input__box">
+                                <label>Gender:</label>
+                                @if (Model.GENDER == true)
+                                {
+                                    <p>Female</p>
+                                }
+                                else
+                                {
+                                    <p>Male</p>
+                                }
+                                @*<select name="GENDER" style="border: 1px solid #e1e1e1; border-radius: 0; height: 40px; width: 100%; padding: 0 0 0 10px;">
+                                        <option value="false">Male</option>
+                                        <option value="true">Female</option>
+                                    </select>*@
+                            </div>
+                            <div class="input__box">
+                                <label>Address</label>
+                                @*<input type="text" name="ADDRESS" value="@Session["Adress"]">*@
+                                <p>@Model.ADDRESS</p>
+                            </div>
+                            <div class="input__box">
+                                <label>Phone</label>
+                                @*<input type="number" name="PHONE" value="@Session["PhoneNumber"]">*@
+                                <p>@Model.PHONE</p>
+                            </div>
+                            <div class="form__btn">
+                                <button> <a href="@Url.Action("Index","Blog")">Return</a> </button>
+                            </div>
+                            @*<div class="form__btn">
+                                    <button type="submit">Save</button>
+                                </div>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End My Account Area -->

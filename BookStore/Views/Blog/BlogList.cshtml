@@ -1,0 +1,43 @@
+﻿
+
+@using BookStore.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<POST>
+
+    <div class="col-lg-9 col-12 order-1 order-lg-2">
+       
+        <div class="blog-page">
+            <div class="page__header">
+                <h2></h2>
+            </div>
+            @foreach (var item in Model)
+            {
+                <!-- Start Single Post -->
+                <article class="blog__post d-flex flex-wrap">
+                    <div class="thumb">
+                        <a href="@Url.Action("Details","Blog",new { id = item.ID })">
+                            <img src="~/Content/images/blog/blog-3/@item.POSTURL" alt="blog images">
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4><a href="@Url.Action("Details","Blog",new { id = item.ID })">@item.TITLE</a></h4>
+                        <ul class="post__meta">
+                            <li>Posts by:<a href="@Url.Action("Profile","Customer",new { id = item.CUSTOMER_ID })">@item.AUTHOR()</a></li>
+                            <li class="post_separator">/</li>
+                            @{var time = (item.CREATED)?.ToString("MMM dd yyyy");}
+                            <li>@time</li>
+                        </ul>
+                        <p>@item.EXCERPT</p>
+                        <div class="blog__btn">
+                            <a class="shopbtn" href="@Url.Action("Details","Blog",new { id = item.ID })">read more</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- End Single Post -->
+            }
+
+        </div>
+        <ul class="wn__pagination">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </ul>
+    </div>

@@ -1,0 +1,242 @@
+﻿@using BookStore.Models
+@model POST
+<!-- Start Bradcaump area -->
+<div class="ht__bradcaump__area bg-image--6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title" style="color:#333">Blog Details</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" style="color:#333" href="@Url.Action("Index","Home")">Home</a>
+                        <span class="brd-separetor" style="color:#333">/</span>
+                        <span class="breadcrumb_item active">Blog-Details</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bradcaump area -->
+<div class="page-blog-details section-padding--lg bg--white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-12">
+                <div class="blog-details content">
+                    <article class="blog-post-details">
+                        <div class="post-thumbnail">
+                            <img src="~/Content/images/blog/blog-3/@Model.POSTURL" alt="blog images">
+                        </div>
+                        <div class="post_wrapper">
+                            <div class="post_header">
+                                <h2>@Model.TITLE</h2>
+                                <ul class="post_author">
+                                    <li>Posts by:<a href="@Url.Action("Profile","Customer",new { id = Model.CUSTOMER_ID })">@Model.AUTHOR()</a></li>
+                                    <li class="post-separator">/</li>
+                                    @{var time = (Model.CREATED)?.ToString("MMM dd yyyy ");}
+                                    <li>@time</li>
+                                </ul>
+                            </div>
+                            <div class="post_content">
+                                <p>@Model.CONTENT</p>
+                            </div>
+                            @*<ul class="blog_meta">
+                                    <li><a href="#">3 comments</a></li>
+                                </ul>*@
+                            @*<ul class="social__net--4 d-flex justify-content-start">
+                                    <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-tumblr"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
+                                </ul>*@
+                        </div>
+                    </article>
+                    <div class="comments_area">
+                        <h3 class="comment__title" id="commentcount">@ViewBag.cc comment</h3>
+                        <ul class="comment__list" id="comment">
+                            @foreach (var item in ViewBag.comment)
+                            {
+                                <li>
+                                    <div class="wn__comment">
+                                        <div class="thumb">
+                                            <img src="~/Content/images/blog/comment/1.jpg" alt="comment images">
+                                        </div>
+                                        <div class="content">
+                                            <div class="comnt__author d-block d-sm-flex">
+                                                <span>@item.NAME</span>
+                                                @{ var time3 = item.CREATED.ToString("MMM dd, yyyy ");
+                                                    var hour = item.CREATED.ToString("h:mm tt");}
+                                                <span>@time3 at @hour</span>
+                                            </div>
+                                            <p>@item.CONTENT</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                    <div class="comment_respond">
+                        <h3 class="reply_title">Leave a Reply <small></small></h3>
+                        <div class="comment__form" id="addComment">
+                            <p>Your email address will not be published.Required fields are marked </p>
+                            <div class="input__box">
+                                <label>Comment</label>
+                                <textarea name="Content" id="Content"></textarea>
+                            </div>
+                            <div class="input__wrapper clearfix">
+                                <input type="hidden" name="PostId" id="PostId" value="@Model.ID" />
+                                <div class="input__box name one--third">
+                                    <label>Name</label>
+                                    <input type="text" id="Name" name="Name" placeholder="Name">
+                                </div>
+                                <div class="input__box email one--third">
+                                    <label>email</label>
+                                    <input type="email" id="Email" name="Email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="submite__btn">
+                                <a onclick="AddComment()">Post Comment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+                <div class="wn__sidebar">
+                    <!-- Start Single Widget -->
+                    <aside class="widget search_widget">
+                        <h3 class="widget-title">Search</h3>
+                        <form action="#">
+                            <div class="form-input">
+                                <input type="text" placeholder="Search...">
+                                <button><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </aside>
+                    <!-- End Single Widget -->
+                    <!-- Start Single Widget -->
+                    <aside class="widget recent_widget">
+                        <h3 class="widget-title">Recent</h3>
+                        <div class="recent-posts">
+                            <ul>
+                                @foreach (var item in ViewBag.model)
+                                {
+                                    <li>
+                                        <div class="post-wrapper d-flex">
+                                            <div class="thumb">
+                                                <a href="@Url.Action("Details","Blog",new { id = item.ID })"><img src="~/Content/images/blog/blog-3/@item.POSTURL" alt="blog images"></a>
+                                            </div>
+                                            <div class="content">
+                                                <h4><a href="@Url.Action("Details","Blog",new { id = item.ID })" style="line-height: 20px; color: #333; font-size: 14px; font-weight: 500;">@item.TITLE</a></h4>
+                                                @{var time1 = (item.CREATED)?.ToString("MMM dd, yyyy");}
+                                                <p style="color: #333; font-size: 12px; font-weight: 300;">@time1</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </aside>
+                    <!-- End Single Widget -->
+                    <!-- Start Single Widget -->
+                    @*<aside class="widget comment_widget">
+                            <h3 class="widget-title">Comments</h3>
+                            <ul>
+                                <li>
+                                    <div class="post-wrapper">
+                                        <div class="thumb">
+                                            <img src="images/blog/comment/1.jpg" alt="Comment images">
+                                        </div>
+                                        <div class="content">
+                                            <p>demo says:</p>
+                                            <a href="#">Quisque semper nunc vitae...</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </aside>*@
+                    <!-- End Single Widget -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function AddComment() {
+        var content1 = $("#Content").val();
+        var postid = $("#PostId").val();
+        var name1 = $("#Name").val();
+        var email = $("#Email").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Comment/AddComment',
+            dataType: 'json',
+            data: { Name: name1, Email: email, Content: content1, PostId: postid },
+            success: function (data) {
+                var name = data.Name;
+                var cmc = data.cmc;
+                var content = data.Content;
+                var time = data.time;
+                $("#commentcount").html(cmc + " comment");
+                $("#comment").append("<li><div class=" + "wn__comment" + "><div class=" + "thumb" + "><img src=" + "/Content/images/blog/comment/1.jpg" + " alt=" + "comment images" + "></div><div class=" + "content" + "><div class=" + "comnt__author d - block d - sm - flex" + "><span>" + name + "</span><span>" + time + "</span></div><p>" + content + "</p> </div> </div> </li>");
+            }
+        });
+    }
+    //$(function () {
+    //    $("#addComment").on("submit", function (e) {
+    //        e.preventDefault();
+    //        $.ajax({
+    //            url: this.action,
+    //            type: 'POST',
+    //            data: $(this).serialize(),
+    //            success: function (data) {
+    //                //var name = data.Name;
+    //                //var cmc = data.cmc;
+    //                //var content = data.Content;
+    //                //var time = data.time;
+    //                //$("#commentcount").html(cmc + "comment");
+    //                $("#comment").append(data);
+    //            }
+    //        });
+    //        //return false;
+    //    });
+    //});
+
+</script>
+@*<script type="text/javascript">
+
+    $(function () {
+        $("#addComment").on("submit", function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/Comment/AddComment',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (data) {
+                    var name = data.Name;
+                    var cmc = data.cmc;
+                    var content = data.Content;
+                    var time = data.time;
+                    $("#commentcount").html(cmc + "comment");
+                    $("#comment").append("<li><div class=" + "wn__comment" + "><div class=" + "thumb" + "><img src=" + "~/Content/images / blog / comment / 1.jpg" + " alt=" + "comment images" + "></div><div class=" + "content" + "><div class=" + "comnt__author d - block d - sm - flex" + "><span>" + name + "</span><span>" + time + "</span></div><p>" + content + "</p> </div> </div> </li>");
+                }
+            });
+        });
+    });
+</script>*@
+@*<div class="wn__comment">
+    <div class="thumb">
+        <img src="~/Content/images/blog/comment/1.jpg" alt="comment images">
+    </div>
+    <div class="content">
+        <div class="comnt__author d-block d-sm-flex">
+            <span>@item.NAME</span>
+            @{ var time3 = item.CREATED.ToString("MMM dd, yyyy ");
+                var hour = item.CREATED.ToString("h:mm tt");}
+            <span>@time3 at @hour</span>
+        </div>
+        <p>@item.CONTENT</p>
+    </div>
+</div>*@

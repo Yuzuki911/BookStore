@@ -153,8 +153,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -545,14 +547,18 @@
     <Content Include="Views\Books\SideGenre.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Home\CartTop.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\BlogList.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\Blog\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

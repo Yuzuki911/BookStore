@@ -13,6 +13,7 @@ namespace BookStore.Controllers
         BookStoreDbContext db = new BookStoreDbContext();   
         public ActionResult Index()
         {
+            ViewBag.post = db.POSTs.OrderByDescending(b => b.CREATED).Take(3).ToList();
             var book = db.BOOKS.Where(b => b.TITLE != null).ToList();
             ViewBag.newb = book.OrderByDescending(b => b.PUBLISH_DATE).Take(6).ToList();
 

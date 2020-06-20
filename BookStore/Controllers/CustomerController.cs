@@ -37,6 +37,11 @@ namespace BookStore.Controllers
             }
             return View();
         }
+        public ActionResult Profile(int id)
+        {
+            var model = db.CUSTOMERS.Find(id);
+            return View(model);
+        }
         [HttpPost]
         public JsonResult UpdateAvatar()
         {
