@@ -14,6 +14,7 @@ namespace BookStore.Controllers
         BookStoreDbContext db = new BookStoreDbContext();
         public ActionResult Index()
         {
+            ViewBag.cm = db.COMMENTs.OrderByDescending(b => b.CREATED).Take(5).ToList();
             var model = db.POSTs.OrderBy(b => b.CREATED).Take(5).ToList();
             return View(model);
         }
@@ -29,6 +30,7 @@ namespace BookStore.Controllers
         }
         public ViewResult Details(int id)
         {
+            ViewBag.cm = db.COMMENTs.OrderByDescending(b => b.CREATED).Take(5).ToList();
             ViewBag.cc = db.COMMENTs.Where(b => b.POST_ID == id).Count();
             ViewBag.comment = db.COMMENTs.Where(b => b.POST_ID == id).ToList();
             ViewBag.model = db.POSTs.OrderBy(b => b.CREATED).Take(5).ToList();

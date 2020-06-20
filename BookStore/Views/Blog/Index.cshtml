@@ -41,42 +41,46 @@
                         <div class="recent-posts">
                             <ul>
                                 @foreach (var item in Model)
-                                {   
-                                <li>
-                                    <div class="post-wrapper d-flex">
-                                        <div class="thumb">
-                                            <a href="@Url.Action("Details","Blog",new { id = item.ID })"><img src="~/Content/images/blog/blog-3/@item.POSTURL" alt="blog images"></a>
+                                {
+                                    <li>
+                                        <div class="post-wrapper d-flex">
+                                            <div class="thumb">
+                                                <a href="@Url.Action("Details", "Blog", new { id = item.ID })"><img src="~/Content/images/blog/blog-3/@item.POSTURL" alt="blog images"></a>
+                                            </div>
+                                            <div class="content">
+                                                <h4><a href="@Url.Action("Details", "Blog", new { id = item.ID })" style="line-height: 20px; color: #333; font-size: 14px; font-weight: 500;">@item.TITLE</a></h4>
+                                                @{var time = (item.CREATED)?.ToString("MMM dd, yyyy");}
+                                                <p style="color: #333; font-size: 12px; font-weight: 300;">@time</p>
+                                            </div>
                                         </div>
-                                        <div class="content">
-                                            <h4><a href="@Url.Action("Details","Blog",new { id = item.ID })" style="line-height: 20px; color: #333; font-size: 14px; font-weight: 500;">@item.TITLE</a></h4>
-                                            @{var time = (item.CREATED)?.ToString("MMM dd, yyyy");}
-                                            <p style="color: #333; font-size: 12px; font-weight: 300;">@time</p>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
                                 }
                             </ul>
                         </div>
                     </aside>
                     <!-- End Single Widget -->
                     <!-- Start Single Widget -->
-                    @*<aside class="widget comment_widget">
+
+                    <aside class="widget comment_widget">
                         <h3 class="widget-title">Comments</h3>
                         <ul>
-                            <li>
-                                <div class="post-wrapper">
-                                    <div class="thumb">
-                                        <img src="images/blog/comment/1.jpg" alt="Comment images">
+                            @foreach (var item in ViewBag.cm)
+                            {
+                                <li>
+                                    <div class="post-wrapper">
+                                        <div class="thumb">
+                                            <img src="~/Content/images/blog/comment/1.jpg" alt="Comment images">
+                                        </div>
+                                        <div class="content">
+                                            <p>@item.NAME says:</p>
+                                            @{ var content = item.CONTENT.Substring(0, 25);}
+                                            <a href="@Url.Action("Details","Blog",new { id = item.POST_ID })">@content ...</a>
+                                        </div>
                                     </div>
-                                    <div class="content">
-                                        <p>demo says:</p>
-                                        <a href="#">Quisque semper nunc vitae...</a>
-                                    </div>
-                                </div>
-                            </li>
-
+                                </li>
+                            }
                         </ul>
-                    </aside>*@
+                    </aside>
                     <!-- End Single Widget -->
                 </div>
             </div>

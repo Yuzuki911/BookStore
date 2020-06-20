@@ -141,22 +141,26 @@
                     </aside>
                     <!-- End Single Widget -->
                     <!-- Start Single Widget -->
-                    @*<aside class="widget comment_widget">
-                            <h3 class="widget-title">Comments</h3>
-                            <ul>
+                    <aside class="widget comment_widget">
+                        <h3 class="widget-title">Comments</h3>
+                        <ul>
+                            @foreach (var item in ViewBag.cm)
+                            {
                                 <li>
                                     <div class="post-wrapper">
                                         <div class="thumb">
-                                            <img src="images/blog/comment/1.jpg" alt="Comment images">
+                                            <img src="~/Content/images/blog/comment/1.jpg" alt="Comment images">
                                         </div>
                                         <div class="content">
-                                            <p>demo says:</p>
-                                            <a href="#">Quisque semper nunc vitae...</a>
+                                            <p>@item.NAME says:</p>
+                                            @{ var content = item.CONTENT.Substring(0, 25);}
+                                            <a href="@Url.Action("Details","Blog",new { id = item.POST_ID })">@content ...</a>
                                         </div>
                                     </div>
                                 </li>
-                            </ul>
-                        </aside>*@
+                            }
+                        </ul>
+                    </aside>
                     <!-- End Single Widget -->
                 </div>
             </div>
@@ -207,36 +211,36 @@
 </script>
 @*<script type="text/javascript">
 
-    $(function () {
-        $("#addComment").on("submit", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: '/Comment/AddComment',
-                type: 'POST',
-                data: $(this).serialize(),
-                success: function (data) {
-                    var name = data.Name;
-                    var cmc = data.cmc;
-                    var content = data.Content;
-                    var time = data.time;
-                    $("#commentcount").html(cmc + "comment");
-                    $("#comment").append("<li><div class=" + "wn__comment" + "><div class=" + "thumb" + "><img src=" + "~/Content/images / blog / comment / 1.jpg" + " alt=" + "comment images" + "></div><div class=" + "content" + "><div class=" + "comnt__author d - block d - sm - flex" + "><span>" + name + "</span><span>" + time + "</span></div><p>" + content + "</p> </div> </div> </li>");
-                }
+        $(function () {
+            $("#addComment").on("submit", function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/Comment/AddComment',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        var name = data.Name;
+                        var cmc = data.cmc;
+                        var content = data.Content;
+                        var time = data.time;
+                        $("#commentcount").html(cmc + "comment");
+                        $("#comment").append("<li><div class=" + "wn__comment" + "><div class=" + "thumb" + "><img src=" + "~/Content/images / blog / comment / 1.jpg" + " alt=" + "comment images" + "></div><div class=" + "content" + "><div class=" + "comnt__author d - block d - sm - flex" + "><span>" + name + "</span><span>" + time + "</span></div><p>" + content + "</p> </div> </div> </li>");
+                    }
+                });
             });
         });
-    });
-</script>*@
+    </script>*@
 @*<div class="wn__comment">
-    <div class="thumb">
-        <img src="~/Content/images/blog/comment/1.jpg" alt="comment images">
-    </div>
-    <div class="content">
-        <div class="comnt__author d-block d-sm-flex">
-            <span>@item.NAME</span>
-            @{ var time3 = item.CREATED.ToString("MMM dd, yyyy ");
-                var hour = item.CREATED.ToString("h:mm tt");}
-            <span>@time3 at @hour</span>
+        <div class="thumb">
+            <img src="~/Content/images/blog/comment/1.jpg" alt="comment images">
         </div>
-        <p>@item.CONTENT</p>
-    </div>
-</div>*@
+        <div class="content">
+            <div class="comnt__author d-block d-sm-flex">
+                <span>@item.NAME</span>
+                @{ var time3 = item.CREATED.ToString("MMM dd, yyyy ");
+                    var hour = item.CREATED.ToString("h:mm tt");}
+                <span>@time3 at @hour</span>
+            </div>
+            <p>@item.CONTENT</p>
+        </div>
+    </div>*@
