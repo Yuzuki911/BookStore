@@ -17,43 +17,43 @@
                         </li>
                         <li class="drop">
                             <a href="@Url.Action("Index","Books")">Books</a>
-                           <!-- <div class="megamenu mega03">
-                                <ul class="item item03">
-                                    <li class="title">Categories</li>
-                                    <li><a href="~/Content/shop-grid.html">Biography </a></li>
-                                    <li><a href="~/Content/shop-grid.html">Business </a></li>
-                                    <li><a href="~/Content/shop-grid.html">Cookbooks </a></li>
-                                    <li><a href="~/Content/shop-grid.html">Health & Fitness </a></li>
-                                    <li><a href="~/Content/shop-grid.html">History </a></li>
-                                </ul>
-                                <ul class="item item03">
-                                    <li class="title"></li>
-                                    <li><a href="~/Content/shop-grid.html">Mystery</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Religion & Inspiration</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Romance</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Fiction/Fantasy</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Sleeveless</a></li>
-                                </ul>
-                                <ul class="item item03">
-                                    <li class="title"></li>
-                                    <li><a href="~/Content/shop-grid.html">Science </a></li>
-                                    <li><a href="~/Content/shop-grid.html">Fiction/Fantasy</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Self-Improvemen</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Home & Garden</a></li>
-                                    <li><a href="~/Content/shop-grid.html">Humor Books</a></li>
-                                </ul>
-                            </div> -->
+                            <!-- <div class="megamenu mega03">
+                                 <ul class="item item03">
+                                     <li class="title">Categories</li>
+                                     <li><a href="~/Content/shop-grid.html">Biography </a></li>
+                                     <li><a href="~/Content/shop-grid.html">Business </a></li>
+                                     <li><a href="~/Content/shop-grid.html">Cookbooks </a></li>
+                                     <li><a href="~/Content/shop-grid.html">Health & Fitness </a></li>
+                                     <li><a href="~/Content/shop-grid.html">History </a></li>
+                                 </ul>
+                                 <ul class="item item03">
+                                     <li class="title"></li>
+                                     <li><a href="~/Content/shop-grid.html">Mystery</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Religion & Inspiration</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Romance</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Fiction/Fantasy</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Sleeveless</a></li>
+                                 </ul>
+                                 <ul class="item item03">
+                                     <li class="title"></li>
+                                     <li><a href="~/Content/shop-grid.html">Science </a></li>
+                                     <li><a href="~/Content/shop-grid.html">Fiction/Fantasy</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Self-Improvemen</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Home & Garden</a></li>
+                                     <li><a href="~/Content/shop-grid.html">Humor Books</a></li>
+                                 </ul>
+                             </div> -->
                         </li>
                         <li class="drop">
                             <a href="@Url.Action("Index","Blog")">Blog</a>
                             @*<div class="megamenu dropdown">
-                                <ul class="item item01">
-                                    <li><a href="~/Content/blog.html">Blog Page</a></li>
-                                    <li><a href="~/Content/blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                    <li><a href="~/Content/blog-no-sidebar.html">Blog No Sidebar</a></li>
-                                    <li><a href="~/Content/blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </div>*@
+                                    <ul class="item item01">
+                                        <li><a href="~/Content/blog.html">Blog Page</a></li>
+                                        <li><a href="~/Content/blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                        <li><a href="~/Content/blog-no-sidebar.html">Blog No Sidebar</a></li>
+                                        <li><a href="~/Content/blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </div>*@
                         </li>
                         <li class="drop">
                             <a href="@Url.Action("About","Home")">About Us</a>
@@ -65,52 +65,59 @@
             <div class="col-md-6 col-sm-6 col-6 col-lg-2">
                 <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
                     <li class="shop_search"><a class="search__active" href="#"></a></li>
-                    <li class="wishlist"><a href="#"></a></li>
+                    @if (Session["UserName"] != null)
+                    {
+                        <li class="wishlist"><a href="@Url.Action("Index","WishList")"></a></li>
+                    }
+                    else
+                    {
+                        <li class="wishlist"><a href="@Url.Action("Login","Customer")"></a></li>
+                    }
                     @*cart top here*@
 
                     <li class="shopcart">
-                        <a  href="@Url.Action("Index","Cart")"></a>
+                        <a href="@Url.Action("Index","Cart")"></a>
                         <!-- Start Shopping Cart -->
                         @*<div class="block-minicart minicart__active">
-                            <div class="minicart-content-wrapper">
-                                <div class="micart__close">
-                                    <span>close</span>
-                                </div>
-                                <div class="items-total d-flex justify-content-between">
-                                    <span>3 items</span>
-                                    <span>Cart Subtotal</span>
-                                </div>
-                                <div class="total_amount text-right">
-                                    <span>$66.00</span>
-                                </div>
-                                <div class="mini_action checkout">
-                                    <a class="checkout__btn" href="#">Go to Checkout</a>
-                                </div>
-                                <div class="single__items">
-                                    <div class="miniproduct">
-                                        <div class="item01 d-flex mt--20">
-                                            <div class="thumb">
-                                                <a href="~/Content/product-details.html"><img src="~/Content/images/product/sm-img/2.jpg" alt="product images"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h6><a href="~/Content/product-details.html">Compete Track Tote</a></h6>
-                                                <span class="prize">$40.00</span>
-                                                <div class="product_prize d-flex justify-content-between">
-                                                    <span class="qun">Qty: 03</span>
-                                                    <ul class="d-flex justify-content-end">
-                                                        <li><a href="~/Content/#"><i class="zmdi zmdi-settings"></i></a></li>
-                                                        <li><a href="~/Content/#"><i class="zmdi zmdi-delete"></i></a></li>
-                                                    </ul>
+                                <div class="minicart-content-wrapper">
+                                    <div class="micart__close">
+                                        <span>close</span>
+                                    </div>
+                                    <div class="items-total d-flex justify-content-between">
+                                        <span>3 items</span>
+                                        <span>Cart Subtotal</span>
+                                    </div>
+                                    <div class="total_amount text-right">
+                                        <span>$66.00</span>
+                                    </div>
+                                    <div class="mini_action checkout">
+                                        <a class="checkout__btn" href="#">Go to Checkout</a>
+                                    </div>
+                                    <div class="single__items">
+                                        <div class="miniproduct">
+                                            <div class="item01 d-flex mt--20">
+                                                <div class="thumb">
+                                                    <a href="~/Content/product-details.html"><img src="~/Content/images/product/sm-img/2.jpg" alt="product images"></a>
+                                                </div>
+                                                <div class="content">
+                                                    <h6><a href="~/Content/product-details.html">Compete Track Tote</a></h6>
+                                                    <span class="prize">$40.00</span>
+                                                    <div class="product_prize d-flex justify-content-between">
+                                                        <span class="qun">Qty: 03</span>
+                                                        <ul class="d-flex justify-content-end">
+                                                            <li><a href="~/Content/#"><i class="zmdi zmdi-settings"></i></a></li>
+                                                            <li><a href="~/Content/#"><i class="zmdi zmdi-delete"></i></a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="mini_action cart">
+                                        <a class="cart__btn" href="@Url.Action("Index","Cart")">View and edit cart</a>
+                                    </div>
                                 </div>
-                                <div class="mini_action cart">
-                                    <a class="cart__btn" href="@Url.Action("Index","Cart")">View and edit cart</a>
-                                </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         <!-- End Shopping Cart -->
                     </li>
 
@@ -128,7 +135,7 @@
                                             {
                                                 <div class="setting__menu">
                                                     <span><a href="@Url.Action("Index","Customer")">Hello @Session["UserName"]</a></span>
-                                                    <span><a href="">My Wishlist</a></span>
+                                                    <span><a href="@Url.Action("Index","WishList")">My Wishlist</a></span>
                                                     <span><a href="@Url.Action("Logout","Customer")">Log out</a></span>
                                                 </div>
                                             }
@@ -136,7 +143,7 @@
                                             {
                                                 <div class="setting__menu">
                                                     <span><a href="@Url.Action("Login","Customer")">My Account</a></span>
-                                                    <span><a href="">My Wishlist</a></span>
+                                                    <span><a href="@Url.Action("Login","Customer")">My Wishlist</a></span>
                                                     <span><a href="@Url.Action("Login","Customer")">Log in</a></span>
                                                     <span><a href="@Url.Action("Register","Customer")">Register</a></span>
                                                 </div>
@@ -161,14 +168,14 @@
                         <li>
                             <a href="@Url.Action("Index","Books")">Books</a>
                             @*<ul>
-                                <li class="title">Categories</li>
-                                <li><a href="~/Content/shop-grid.html">Biography</a></li>
-                                <li><a href="~/Content/shop-list.html">Business</a></li>
-                                <li><a href="~/Content/shop-left-sidebar.html">Cookbooks</a></li>
-                                <li><a href="~/Content/shop-right-sidebar.html">Health & Fitness</a></li>
-                                <li><a href="~/Content/shop-no-sidebar.html">History</a></li>
-                                <li><a href="~/Content/single-product.html">Single Product</a></li>
-                            </ul>*@
+                                    <li class="title">Categories</li>
+                                    <li><a href="~/Content/shop-grid.html">Biography</a></li>
+                                    <li><a href="~/Content/shop-list.html">Business</a></li>
+                                    <li><a href="~/Content/shop-left-sidebar.html">Cookbooks</a></li>
+                                    <li><a href="~/Content/shop-right-sidebar.html">Health & Fitness</a></li>
+                                    <li><a href="~/Content/shop-no-sidebar.html">History</a></li>
+                                    <li><a href="~/Content/single-product.html">Single Product</a></li>
+                                </ul>*@
                         </li>
                         <li>
                             <a href="#">Blog</a>

@@ -1,0 +1,106 @@
+﻿@using BookStore.Models
+@model List<BOOK>
+<!-- Start Bradcaump area -->
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title" style="color:#333">Wishlist</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" style="color:#333" href="@Url.Action("Index","Home")">Home</a>
+                        <span class="brd-separetor" style="color:#333">/</span>
+                        <span class="breadcrumb_item active">Wishlist</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bradcaump area -->
+<!-- cart-main-area start -->
+<div class="wishlist-area section-padding--lg bg__white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="wishlist-content">
+                    <form action="#">
+                        <div class="wishlist-table wnro__table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove"></th>
+                                        <th class="product-thumbnail"></th>
+                                        <th class="product-name"><span class="nobr">Product Name</span></th>
+                                        <th class="product-price"><span class="nobr"> Unit Price </span></th>
+                                        <th class="product-add-to-cart"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                        <tr>
+                            <td class="product-remove"><a href="@Url.Action("RemoveWish","WishList",new { id = item.ID })">×</a></td>
+                            <td class="product-thumbnail"><a href="@Url.Action("Details","Books",new { id = item.ID })"><img src="~/Content/images/product/@item.BOOK_URL" style="width:80px;height:100px;" alt=""></a></td>
+                            <td class="product-name"><a href="@Url.Action("Details","Books",new { id = item.ID })">@item.TITLE</a></td>
+                            <td class="product-price"><span class="amount">@item.PRICE.GetValueOrDefault().ToString("N0") VNĐ</span></td>
+                            <td class="product-add-to-cart"><a onclick="addtocart(@item.ID);removewish(@item.ID)"> Add to Cart</a></td>
+                        </tr>}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart-main-area end -->
+<div class="modal fade" id="Cartaddmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal__container" role="document" style="width:fit-content;">
+        <div class="modal-content">
+            <div class="modal-header modal__header">
+                <h5 class="modal-title ">Thank You !</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+                <div class="modal-product text-center">
+                    <!-- Start product images -->
+                    <!-- end product images -->
+                    <p style="margin-right: 15px; padding-top: 8px;">ADDED TO CART</p>
+                    @*<div class="addtocart-btn">
+                            <a href="@Url.Action("Index","Cart")">EDIT CART</a>
+                        </div>*@
+                    <a href="/Cart/Index" class="btn btn-success">EDIT CART</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function addtocart(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/Cart/AddItem',
+            dataType: 'json',
+            data: { id: id, Soluong: 1 },
+            success: function () {
+                $('#Cartaddmodal').modal('show');
+            }
+        });
+    }
+    function removewish(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/WishList/RemoveWish',
+            //dataType: 'json',
+            data: { id: id },
+            success: function () {
+                //$('#Cartaddmodal').modal('show');
+                location.reload()
+            }
+        });
+    }
+
+</script>
