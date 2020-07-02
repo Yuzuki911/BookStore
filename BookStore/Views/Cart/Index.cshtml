@@ -64,7 +64,15 @@
                             <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
                                 <li><button type="submit" style="border:hidden; background-color:rgb(246,246,246);"><a>Update Cart</a></button> </li>
                                 <li><a href="@Url.Action("Index","Books")">Continue Shopping</a></li>
-                                <li><a href="#">Check Out</a></li>
+                                @if (Session["Id"] != null)
+                                {
+                                    <li><a href="@Url.Action("Payment","Cart")">Check Out</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Login","Customer")">Check Out</a></li>
+                                }
+
                             </ul>
                         </div>
                     </form>
